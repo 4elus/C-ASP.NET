@@ -36,7 +36,18 @@
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <a href="#" class="btn text-warning">@Session["login"]</a>
+                @if (Session["login"] != null)
+                {
+                    if (Session["login"].ToString() == "Admin")
+                    {
+                        <a href="~/Home/ShowAllDataFromDb" class="btn text-warning">@Session["login"]</a>
+                    }
+                    else
+                    {
+                        <a href="#" class="btn text-success">@Session["login"]</a>
+                    }
+                }
+
             </form>
         </div>
     </nav>

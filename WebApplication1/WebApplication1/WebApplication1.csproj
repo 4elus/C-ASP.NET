@@ -194,6 +194,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\CRUD.cshtml" />
+    <Content Include="Views\Home\ShowAllDataFromDb.cshtml" />
+    <Content Include="Views\Home\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
