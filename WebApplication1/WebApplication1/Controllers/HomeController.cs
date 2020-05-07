@@ -126,6 +126,31 @@ namespace WebApplication1.Controllers
             return View(films);
         }
 
+        public ActionResult Read(int id)
+        {
+            Model1 db = new Model1();
+            var film = db.FILMS.Where(x => x.FILM_ID == id).First();
+            return View(film);
+        }
+
+        public ActionResult Search(string search)
+        {
+            Model1 db = new Model1();
+            var films = db.FILMS.Where(x => x.NAME_FILM.Contains(search));
+            return View(films);
+        }
+
+
+        public ActionResult Delete(int id)
+        {
+            Model1 db = new Model1();
+            FILMS films = db.FILMS.Where(x => x.FILM_ID == id).First();
+            db.Entry(films).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            Session["updated"] = "Запись удалена";
+            return RedirectToAction("ShowAllDataFromDb");
+        }
+
         public ActionResult Update(int id)
         {
             Session["update_id"] = id;
@@ -136,7 +161,7 @@ namespace WebApplication1.Controllers
             SelectList countries = new SelectList(db.COUNTRIES, "COUNTY_ID", "NAME_COUNTRY");
             ViewBag.Country = countries;
             string country = db.FILMS.Where(x => x.FILM_ID == id).Select(x => x.COUNTRIES.NAME_COUNTRY).First();
-            Session["CountryUpdate"] = country;
+            ViewBag.Test = country;
 
             SelectList genres = new SelectList(db.GENRES, "GENRE_ID", "NAME_GENRE");
             ViewBag.Genres = genres;

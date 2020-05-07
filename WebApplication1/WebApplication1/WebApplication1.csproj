@@ -197,6 +197,8 @@
     <Content Include="Views\Home\CRUD.cshtml" />
     <Content Include="Views\Home\ShowAllDataFromDb.cshtml" />
     <Content Include="Views\Home\Update.cshtml" />
+    <Content Include="Views\Home\Read.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

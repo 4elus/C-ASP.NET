@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<WebApplication1.FILMS>
+
+
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+            <div class="card col-md-4">
+                <img src="https://i.pinimg.com/736x/29/d7/d5/29d7d59125558e0800d0e4d41341fde5.jpg" class="card-img-top" alt="..." width="200" height="200">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(x => item.NAME_FILM)</h5>
+                    <p class="card-text">Жанр: @Html.DisplayFor(x => item.GENRES.NAME_GENRE)</p>
+                    <p class="card-text">Год: @Html.DisplayFor(x => item.YEAR_FILMS)</p>
+                    <a href="Read/?id=@item.FILM_ID" class="btn btn-primary float-right">Описание</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

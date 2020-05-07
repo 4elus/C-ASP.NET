@@ -1,0 +1,18 @@
+﻿
+@model WebApplication1.FILMS
+
+
+
+<div class="container">
+    <h1>Описание</h1>
+    <div class="card text-center">
+        <div class="card-body">
+            <h5><strong>@Html.DisplayFor(x => x.NAME_FILM, new { @class = "card-title" })</strong></h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        </div>
+        <div class="card-footer text-muted">
+            Дата выхода: @Html.DisplayFor(x => x.YEAR_FILMS) г.
+        </div>
+    </div>
+</div>
+
