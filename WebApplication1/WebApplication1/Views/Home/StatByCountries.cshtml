@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<WebApplication1.Models.StatGenreModel>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Статистика</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">CRUD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Index">Домой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/ShowAllDataFromDb">Все данные</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/CRUD">Добавить</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/FilmByCountry">Поиск фильма по стране</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/StatistickByGenre">Статистика по жанрам</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active" href="~/Home/StatByCountries">Статистика по фильмам</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Статистика</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Страна</th>
+                    <th scope="col">Количество</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

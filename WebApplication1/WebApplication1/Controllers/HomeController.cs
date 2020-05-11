@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -199,6 +199,30 @@ namespace WebApplication1.Controllers
             Model1 db = new Model1();
             var films = db.FILMS.Where(x => x.COUNTRIES.NAME_COUNTRY.Contains(search));
             return View(films);
+        }
+
+        public ActionResult StatistickByGenre()
+        {
+            Model1 db = new Model1();
+            var pl = db.FILMS.GroupBy(x => x.GENRES.NAME_GENRE).Select(group => new StatGenreModel
+            {
+                Name = group.Key,
+                Count = group.Count()
+            });
+      
+            return View(pl);
+        }
+
+        public ActionResult StatByCountries()
+        {
+            Model1 db = new Model1();
+            var pl = db.FILMS.GroupBy(x => x.COUNTRIES.NAME_COUNTRY).Select(group => new StatGenreModel
+            {
+                Name = group.Key,
+                Count = group.Count()
+            });
+
+            return View(pl);
         }
     }
 }

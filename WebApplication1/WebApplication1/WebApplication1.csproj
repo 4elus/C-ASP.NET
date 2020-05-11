@@ -150,6 +150,7 @@
     <Compile Include="LISTJOBS.cs" />
     <Compile Include="LISTWORKERS.cs" />
     <Compile Include="Model1.cs" />
+    <Compile Include="Models\StatGenreModel.cs" />
     <Compile Include="PLACES.cs" />
     <Compile Include="POSITION.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,10 +206,11 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\FilmByCountry.cshtml" />
     <Content Include="Views\Home\ResSearchFilmByCountry.cshtml" />
+    <Content Include="Views\Home\StatistickByGenre.cshtml" />
+    <Content Include="Views\Home\StatByCountries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
