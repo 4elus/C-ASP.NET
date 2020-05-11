@@ -1,0 +1,75 @@
+﻿@{
+    Layout = null;
+}
+@model IEnumerable<WebApplication1.FILMS>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Поиск фильма по стране</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">CRUD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Index">Домой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/ShowAllDataFromDb">Все данные</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/CRUD">Добавить</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="~/Home/FilmByCountry">Поиск фильма по стране</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Поиск фильма по стране</h1>
+        <form method="post" action="/Home/ResSearchFilmByCountry">
+            <div class="form-row">
+                <div class="col-9">
+                    <input type="text" name="search" class="form-control" placeholder="Страна">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Выполнить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+         <h2>Результат поиска: </h2>
+        <div class="row">
+         
+            @foreach (var item in Model)
+            {
+
+                <div class="card col-md-4">
+                    <img src="https://i.pinimg.com/736x/29/d7/d5/29d7d59125558e0800d0e4d41341fde5.jpg" class="card-img-top" alt="..." width="200" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(x => item.NAME_FILM)</h5>
+                        <p class="card-text">Жанр: @Html.DisplayFor(x => item.GENRES.NAME_GENRE)</p>
+                        <p class="card-text">Год: @Html.DisplayFor(x => item.YEAR_FILMS)</p>
+                        <a href="Read/?id=@item.FILM_ID" class="btn btn-primary float-right">Описание</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

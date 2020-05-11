@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
         public ActionResult LogIn(string login, string password)
         {
             Model1 db = new Model1();
-
+            
             try
             {
                 var getUser = db.CLIENTS.Where(x => x.CLIENT_LOGIN == login && x.CLIENT_PASSWORD == password).First();
@@ -64,7 +64,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult Registration()
         {
-            
+            Model1 db = new Model1();
+            //var test = db.LISTWORKERS.Where(x => x.WORKER_ID == 1.Get_short_FIO());
             return View();
         }
 
@@ -184,6 +185,20 @@ namespace WebApplication1.Controllers
             ViewBag.Rating = rating;
 
             return View();
+        }
+
+        public ActionResult FilmByCountry()
+        {
+      
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ResSearchFilmByCountry(string search)
+        {
+            Model1 db = new Model1();
+            var films = db.FILMS.Where(x => x.COUNTRIES.NAME_COUNTRY.Contains(search));
+            return View(films);
         }
     }
 }

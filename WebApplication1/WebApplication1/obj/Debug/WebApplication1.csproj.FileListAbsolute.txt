@@ -176,3 +176,5 @@ C:\Users\User\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.
 C:\Users\User\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 C:\Users\User\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.dll
 C:\Users\User\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
+C:\Курсовая\WebApplication1\WebApplication1\bin\ru\EntityFramework.resources.dll
+C:\Курсовая\WebApplication1\WebApplication1\bin\ru\EntityFramework.SqlServer.resources.dll

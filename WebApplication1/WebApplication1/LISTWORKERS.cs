@@ -4,7 +4,7 @@ namespace WebApplication1
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+
 
     [Table("C#SAM.LISTWORKERS")]
     public partial class LISTWORKERS
@@ -32,5 +32,7 @@ namespace WebApplication1
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LISTJOBS> LISTJOBS { get; set; }
+
+     
     }
 }

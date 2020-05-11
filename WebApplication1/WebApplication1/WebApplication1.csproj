@@ -46,10 +46,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Functions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=dbe58f97a0872a64, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Functions.1.5.0\lib\net46\EntityFramework.Functions.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
@@ -137,6 +140,7 @@
     <Compile Include="CATEGORIES.cs" />
     <Compile Include="CLIENTS.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OracleFunctions.cs" />
     <Compile Include="COUNTRIES.cs" />
     <Compile Include="FILMS.cs" />
     <Compile Include="GENRES.cs" />
@@ -199,6 +203,8 @@
     <Content Include="Views\Home\Update.cshtml" />
     <Content Include="Views\Home\Read.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\FilmByCountry.cshtml" />
+    <Content Include="Views\Home\ResSearchFilmByCountry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
