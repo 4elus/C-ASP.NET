@@ -178,3 +178,10 @@ C:\Users\User\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.
 C:\Users\User\Desktop\WebApplication1\WebApplication1\obj\Debug\WebApplication1.pdb
 C:\Курсовая\WebApplication1\WebApplication1\bin\ru\EntityFramework.resources.dll
 C:\Курсовая\WebApplication1\WebApplication1\bin\ru\EntityFramework.SqlServer.resources.dll
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.Compression.Base.dll
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.DocIO.Base.dll
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.Licensing.dll
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.OfficeChart.Base.dll
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.Compression.Base.xml
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.DocIO.Base.xml
+C:\Курсовая\WebApplication1\WebApplication1\bin\Syncfusion.OfficeChart.Base.xml

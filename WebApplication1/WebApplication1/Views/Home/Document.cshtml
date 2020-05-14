@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+
+
+@model IEnumerable<WebApplication1.FILMS>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CRUD</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">CRUD</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/Index">Домой</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="~/Home/ShowAllDataFromDb">Все данные</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/CRUD">Добавить</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/FilmByCountry/">Поиск фильма по стране</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/StatistickByGenre">Статистика по жанрам</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/StatByCountries">Статистика по фильмам</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Home/CreateDocument">Документ</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        @using (Html.BeginForm("CreateDocument", "Home", FormMethod.Post))
+        {
+            
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary float-right">Создать документ</button>
+            </div>
+         
+
+        }
+
+    </div>
+</body>
+</html>

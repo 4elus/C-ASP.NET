@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
+using Syncfusion.DocIO;
+using Syncfusion.DocIO.DLS;
 
 namespace WebApplication1.Controllers
 {
@@ -223,6 +225,54 @@ namespace WebApplication1.Controllers
             });
 
             return View(pl);
+        }
+
+        public ActionResult Document()
+        {
+            
+
+            return View();
+        }
+
+        [HttpPost]
+        public void CreateDocument()
+        {
+
+            Model1 db = new Model1();
+            var pl = from t1 in db.TICKETS
+                     from t2 in db.SEANS
+                     from t3 in db.COUNTRIES
+                     from t4 in db.FILMS
+                     orderby t4.RATING descending
+                     where t1.ROOM == t2.ID_ROOM
+                     where t2.ID_FILM == t4.FILM_ID
+                     where t4.ID_COUNTRY == t3.COUNTY_ID
+                     where t1.STATUS == 3
+                     group new { t1, t3, t4 } by new { t1.STATUS, t3.NAME_COUNTRY, t4.NAME_FILM, t4.GENRES, t4.RATING } into g
+                     select new
+                     {
+                         All = g.Key,
+                         Count = g.Count()
+                     };
+
+
+            //Creates a new instance of WordDocument (Empty Word Document)
+            using (WordDocument document = new WordDocument())
+            {
+                document.EnsureMinimal();
+                IWSection section = document.AddSection();
+                IWParagraph paragraph = section.AddParagraph();
+                foreach (var el in pl.ToList())
+                {
+                    IWTextRange textRange = paragraph.AppendText(el.All.NAME_FILM + "\n");
+                    textRange.CharacterFormat.Bold = true;
+                    document.LastParagraph.AppendText("\tСтрана: " + el.All.NAME_COUNTRY + "; Рейтинг: " + el.All.RATING + "; Кол-во проданных билетов: " + el.Count  + "\n");
+                }
+
+                //document.LastParagraph.AppendText("Hello World");
+                document.Save("Result.docx", FormatType.Docx, HttpContext.ApplicationInstance.Response, HttpContentDisposition.Attachment);
+            }
+
         }
     }
 }
