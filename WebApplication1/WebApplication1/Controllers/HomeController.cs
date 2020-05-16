@@ -136,6 +136,31 @@ namespace WebApplication1.Controllers
             return View(film);
         }
 
+        public ActionResult BuyTicket(int id)
+        {
+            Session["idfilm"] = id;
+            return View();
+        }
+
+        public ActionResult BuyFilm(int zal, int place, string name)
+        {
+            Model1 db = new Model1();
+            TICKETS tickets = new TICKETS();
+            tickets.DATETIME = DateTime.Now;
+            tickets.ROOM = zal;
+            tickets.VARIETY = Convert.ToInt32(Session["idfilm"].ToString());
+            tickets.PLACE = place;
+            if (name == "Купить")
+                tickets.STATUS = 3;
+            else
+                tickets.STATUS = 2;
+
+            db.Entry(tickets).State = System.Data.Entity.EntityState.Added;
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public ActionResult Search(string search)
         {
             Model1 db = new Model1();
@@ -240,15 +265,13 @@ namespace WebApplication1.Controllers
 
             Model1 db = new Model1();
             var pl = from t1 in db.TICKETS
-                     from t2 in db.SEANS
                      from t3 in db.COUNTRIES
                      from t4 in db.FILMS
                      orderby t4.RATING descending
-                     where t1.ROOM == t2.ID_ROOM
-                     where t2.ID_FILM == t4.FILM_ID
+                     where t1.VARIETY == t4.FILM_ID
                      where t4.ID_COUNTRY == t3.COUNTY_ID
                      where t1.STATUS == 3
-                     group new { t1, t3, t4 } by new { t1.STATUS, t3.NAME_COUNTRY, t4.NAME_FILM, t4.GENRES, t4.RATING } into g
+                     group new { t1, t3, t4 } by new { t1.STATUS, t3.NAME_COUNTRY, t4.NAME_FILM, t4.RATING } into g
                      select new
                      {
                          All = g.Key,

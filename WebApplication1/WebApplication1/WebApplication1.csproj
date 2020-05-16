@@ -221,6 +221,7 @@
     <Content Include="Views\Home\StatistickByGenre.cshtml" />
     <Content Include="Views\Home\StatByCountries.cshtml" />
     <Content Include="Views\Home\Document.cshtml" />
+    <Content Include="Views\Home\BuyTicket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
