@@ -220,6 +220,59 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult CountBronFilms()
+        {
+            /*
+              var pl = db.FILMS.GroupBy(x => x.GENRES.NAME_GENRE).Select(group => new StatGenreModel
+            {
+                Name = group.Key,
+                Count = group.Count()
+            });
+      
+             */
+
+            Model1 db = new Model1();
+            var pl = from t1 in db.TICKETS
+                     from t3 in db.COUNTRIES
+                     from t4 in db.FILMS
+                     orderby t4.RATING descending
+                     where t1.VARIETY == t4.FILM_ID
+                     where t4.ID_COUNTRY == t3.COUNTY_ID
+                     where t1.STATUS == 2
+                     group new { t1, t3, t4 } by new { t1.STATUS, t3.NAME_COUNTRY, t4.NAME_FILM } into g
+                     select new BronFilmModel
+                     {
+                         NameCountry = g.Select(x => x.t3.NAME_COUNTRY).FirstOrDefault(),
+                         NameFilm = g.Select(x => x.t4.NAME_FILM).FirstOrDefault(),
+                         Count = g.Count()
+                     };
+
+            return View(pl);
+        }
+
+        public ActionResult FinalQuery()
+        {
+            Model1 db = new Model1();
+            var pl = from t1 in db.TICKETS
+                     from t2 in db.FILMS
+                     from t3 in db.ROOMS
+                     from t4 in db.CATEGORIES
+                     orderby t2.RATING descending
+                     where t1.VARIETY == t2.FILM_ID
+                     where t1.ROOM == t3.ROOM_ID
+                     where t3.CATEG == t4.CATEG_ID
+                     where t1.STATUS == 3
+                     group new { t1, t2, t3, t4 } by new { t1.STATUS,  t2.NAME_FILM } into g
+                     select new FinalModel
+                     {
+                         NameFilm = g.Key.NAME_FILM,
+                         Summa = g.Sum(x => x.t4.PRICE),
+                         Count = g.Count()
+                     };
+
+            return View(pl);
+        }
+
         [HttpPost]
         public ActionResult ResSearchFilmByCountry(string search)
         {

@@ -162,6 +162,8 @@
     <Compile Include="LISTJOBS.cs" />
     <Compile Include="LISTWORKERS.cs" />
     <Compile Include="Model1.cs" />
+    <Compile Include="Models\BronFilmModel.cs" />
+    <Compile Include="Models\FinalModel.cs" />
     <Compile Include="Models\StatGenreModel.cs" />
     <Compile Include="PLACES.cs" />
     <Compile Include="POSITION.cs" />
@@ -222,6 +224,8 @@
     <Content Include="Views\Home\StatByCountries.cshtml" />
     <Content Include="Views\Home\Document.cshtml" />
     <Content Include="Views\Home\BuyTicket.cshtml" />
+    <Content Include="Views\Home\CountBronFilms.cshtml" />
+    <Content Include="Views\Home\FinalQuery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
