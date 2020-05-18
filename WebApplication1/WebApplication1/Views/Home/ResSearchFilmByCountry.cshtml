@@ -75,7 +75,10 @@
                         <h5 class="card-title">@Html.DisplayFor(x => item.NAME_FILM)</h5>
                         <p class="card-text">Жанр: @Html.DisplayFor(x => item.GENRES.NAME_GENRE)</p>
                         <p class="card-text">Год: @Html.DisplayFor(x => item.YEAR_FILMS)</p>
-                        <a href="Read/?id=@item.FILM_ID" class="btn btn-primary float-right">Описание</a>
+                        <div class="float-right">
+                            <a href="Read/?id=@item.FILM_ID" class="btn btn-primary">Описание</a>
+                            <a href="BuyTicket/?id=@item.FILM_ID" class="btn btn-success">Купить</a>
+                        </div>
                     </div>
                 </div>
             }

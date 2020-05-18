@@ -152,6 +152,7 @@
     <Compile Include="CATEGORIES.cs" />
     <Compile Include="CLIENTS.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LISTJOBSController.cs" />
     <Compile Include="Controllers\OracleFunctions.cs" />
     <Compile Include="COUNTRIES.cs" />
     <Compile Include="FILMS.cs" />
@@ -226,6 +227,12 @@
     <Content Include="Views\Home\BuyTicket.cshtml" />
     <Content Include="Views\Home\CountBronFilms.cshtml" />
     <Content Include="Views\Home\FinalQuery.cshtml" />
+    <Content Include="Views\LISTJOBS\Create.cshtml" />
+    <Content Include="Views\LISTJOBS\Delete.cshtml" />
+    <Content Include="Views\LISTJOBS\Details.cshtml" />
+    <Content Include="Views\LISTJOBS\Edit.cshtml" />
+    <Content Include="Views\LISTJOBS\Index.cshtml" />
+    <Content Include="Views\LISTJOBS\ListJobsIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

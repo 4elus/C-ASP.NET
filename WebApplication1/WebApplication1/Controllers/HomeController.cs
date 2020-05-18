@@ -94,6 +94,8 @@ namespace WebApplication1.Controllers
             db.SaveChanges();
             Session["added"] = "Запись добавлена";
             return RedirectToAction("CRUD");
+
+           
         }
 
         [HttpPost]
@@ -130,11 +132,7 @@ namespace WebApplication1.Controllers
             {
                 Session["username_exist"] = "Имя пользователя уже существует";
                 return RedirectToAction("Registration");
-            }
-
-            
-
-           
+            }                
         }
 
         public ActionResult ShowAllDataFromDb()
@@ -335,11 +333,19 @@ namespace WebApplication1.Controllers
             var pl = from t1 in db.TICKETS
                      from t3 in db.COUNTRIES
                      from t4 in db.FILMS
+                     from t5 in db.LISTJOBS
+                     from t6 in db.LISTWORKERS
                      orderby t4.RATING descending
                      where t1.VARIETY == t4.FILM_ID
                      where t4.ID_COUNTRY == t3.COUNTY_ID
+
+                     where t4.FILM_ID == t5.ID_FILM
+                     where t5.ID_WORKER == t6.WORKER_ID
+
+
                      where t1.STATUS == 3
-                     group new { t1, t3, t4 } by new { t1.STATUS, t3.NAME_COUNTRY, t4.NAME_FILM, t4.RATING } into g
+                     where t5.ID_POS == 1
+                     group new { t1, t3, t4, t6 } by new { t1.STATUS, t3.NAME_COUNTRY, t4.NAME_FILM, t6.WORKER_SURNAME, t6.WORKER_NAME, t6.WORKER_PATR,  t4.RATING } into g
                      select new
                      {
                          All = g.Key,
@@ -357,7 +363,16 @@ namespace WebApplication1.Controllers
                 {
                     IWTextRange textRange = paragraph.AppendText(el.All.NAME_FILM + "\n");
                     textRange.CharacterFormat.Bold = true;
-                    document.LastParagraph.AppendText("\tСтрана: " + el.All.NAME_COUNTRY + "; Рейтинг: " + el.All.RATING + "; Кол-во проданных билетов: " + el.Count  + "\n");
+                    if (el.All.WORKER_PATR != null)
+                    {
+                        document.LastParagraph.AppendText("\tСтрана: " + el.All.NAME_COUNTRY + "; Режиссер: " + el.All.WORKER_SURNAME + " " + el.All.WORKER_NAME[0] + "." + el.All.WORKER_PATR[0] + "."
+                        + "; Рейтинг: " + el.All.RATING + "; Кол-во проданных билетов: " + el.Count + "\n");
+                    }
+                    else
+                    {
+                        document.LastParagraph.AppendText("\tСтрана: " + el.All.NAME_COUNTRY + "; Режиссер: " + el.All.WORKER_SURNAME + " " + el.All.WORKER_NAME[0] + "."
+                        + "; Рейтинг: " + el.All.RATING + "; Кол-во проданных билетов: " + el.Count + "\n");
+                    }
                 }
 
                 //document.LastParagraph.AppendText("Hello World");

@@ -1,0 +1,42 @@
+﻿@model WebApplication1.LISTJOBS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LISTJOBS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FILMS.NAME_FILM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FILMS.NAME_FILM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LISTWORKERS.WORKER_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LISTWORKERS.WORKER_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.POSITION.NAME_POS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.POSITION.NAME_POS)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

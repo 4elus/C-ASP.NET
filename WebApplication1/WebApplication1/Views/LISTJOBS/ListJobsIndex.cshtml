@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication1.LISTJOBS>
+
+@{
+    ViewBag.Title = "ListJobsIndex";
+}
+
+<h2>ListJobsIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FILMS.NAME_FILM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LISTWORKERS.WORKER_NAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.POSITION.NAME_POS)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FILMS.NAME_FILM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LISTWORKERS.WORKER_NAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.POSITION.NAME_POS)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
