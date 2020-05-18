@@ -108,7 +108,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult RegistrationUser(string login, string password, string role)
         {
-            
+
 
             CLIENTS client = new CLIENTS();
             client.CLIENT_LOGIN = login;
@@ -116,10 +116,25 @@ namespace WebApplication1.Controllers
             client.CLIENT_ROLE = role;
 
             Model1 db = new Model1();
-            db.Entry(client).State = System.Data.Entity.EntityState.Added;
-            db.SaveChanges();
 
-            return RedirectToAction("Index");
+            var usernames = db.CLIENTS.Where(x => x.CLIENT_LOGIN == login);
+
+            if (usernames.Count() == 0)
+            {
+                db.Entry(client).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                Session["login"] = login;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Session["username_exist"] = "Имя пользователя уже существует";
+                return RedirectToAction("Registration");
+            }
+
+            
+
+           
         }
 
         public ActionResult ShowAllDataFromDb()
