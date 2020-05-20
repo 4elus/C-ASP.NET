@@ -152,6 +152,7 @@ namespace WebApplication1.Controllers
         public ActionResult BuyTicket(int id)
         {
             Session["idfilm"] = id;
+            Session["existPlace"] = null;
             return View();
         }
 
@@ -168,10 +169,23 @@ namespace WebApplication1.Controllers
             else
                 tickets.STATUS = 2;
 
-            db.Entry(tickets).State = System.Data.Entity.EntityState.Added;
-            db.SaveChanges();
 
-            return RedirectToAction("Index");
+            var existPlace = db.TICKETS.Where(x => x.PLACE == place && x.ROOM == zal && x.VARIETY == tickets.VARIETY);
+            var a = db.TICKETS.Where(x => x.PLACE == place && x.ROOM == zal && x.VARIETY == tickets.VARIETY).Select(x => x.DATETIME).FirstOrDefault();
+
+            if (existPlace.Count() == 0)
+            {
+                db.Entry(tickets).State = System.Data.Entity.EntityState.Added;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Session["existPlace"] = "Это место уже занято !";
+                return RedirectToAction("Index");
+            }
+
+            
         }
 
         public ActionResult Search(string search)
