@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebApplication1.Models;
 using Syncfusion.DocIO;
 using Syncfusion.DocIO.DLS;
+using Oracle.ManagedDataAccess.Client;
 
 namespace WebApplication1.Controllers
 {
@@ -393,6 +394,54 @@ namespace WebApplication1.Controllers
                 document.Save("Result.docx", FormatType.Docx, HttpContext.ApplicationInstance.Response, HttpContentDisposition.Attachment);
             }
 
+        }
+
+        public ActionResult FindWorkerById()
+        {
+            return View();
+        }
+
+        public ActionResult TestOracle(int? id)
+        {
+            using (Model1 db = new Model1())
+            {
+                var parameters = new[]
+                {
+                    new OracleParameter("p1", Oracle.ManagedDataAccess.Client.OracleDbType.Int32)
+                };
+                parameters[0].Value = id;
+                var res = db.Database.SqlQuery<String>("SELECT lab_package.get_short_FIO(:p1) FROM dual", parameters);
+
+                Session["resQuery"] = res.ElementAt(0);
+
+                return View("ResultQuery");
+            }
+        }
+
+        public ActionResult DohodFilmByDate()
+        {
+            return View();
+        }
+
+        public ActionResult Dohod(string film, DateTime date1, DateTime date2)
+        {
+            using (Model1 db = new Model1())
+            {
+                var parameters = new[]
+                {
+                    new OracleParameter("p1", Oracle.ManagedDataAccess.Client.OracleDbType.Varchar2),
+                    new OracleParameter("p2", Oracle.ManagedDataAccess.Client.OracleDbType.Date),
+                    new OracleParameter("p3", Oracle.ManagedDataAccess.Client.OracleDbType.Date)
+                };
+                parameters[0].Value = film;
+                parameters[1].Value = date1;
+                parameters[2].Value = date2;
+                var res = db.Database.SqlQuery<String>("SELECT dohodfilm(:p1, :p2, :p3) from dual", parameters);
+
+                Session["resQuery"] = res.ElementAt(0);
+
+                return View("ResultQuery");
+            }
         }
     }
 }

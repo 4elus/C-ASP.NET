@@ -233,6 +233,9 @@
     <Content Include="Views\LISTJOBS\Edit.cshtml" />
     <Content Include="Views\LISTJOBS\Index.cshtml" />
     <Content Include="Views\LISTJOBS\ListJobsIndex.cshtml" />
+    <Content Include="Views\Home\FindWorkerById.cshtml" />
+    <Content Include="Views\Home\ResultQuery.cshtml" />
+    <Content Include="Views\Home\DohodFilmByDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
