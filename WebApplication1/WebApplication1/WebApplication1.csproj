@@ -236,6 +236,7 @@
     <Content Include="Views\Home\FindWorkerById.cshtml" />
     <Content Include="Views\Home\ResultQuery.cshtml" />
     <Content Include="Views\Home\DohodFilmByDate.cshtml" />
+    <Content Include="Views\Home\ResultQuery2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

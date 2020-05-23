@@ -403,6 +403,8 @@ namespace WebApplication1.Controllers
 
         public ActionResult TestOracle(int? id)
         {
+            Session["resQuery"] = null;
+
             using (Model1 db = new Model1())
             {
                 var parameters = new[]
@@ -425,6 +427,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Dohod(string film, DateTime date1, DateTime date2)
         {
+            Session["resQuery"] = null;
             using (Model1 db = new Model1())
             {
                 var parameters = new[]
@@ -441,6 +444,28 @@ namespace WebApplication1.Controllers
                 Session["resQuery"] = res.ElementAt(0);
 
                 return View("ResultQuery");
+            }
+        }
+
+        public ActionResult Actor()
+        {
+            Session["resQuery"] = null;
+
+            using (Model1 db = new Model1())
+            {
+                var parameters = new[]
+                {
+                    new OracleParameter("p1", Oracle.ManagedDataAccess.Client.OracleDbType.Varchar2, 32000, null, System.Data.ParameterDirection.Output)
+                };
+
+                db.Database.ExecuteSqlCommand("begin actor_regicer(:p1); end;", parameters);
+           
+
+                Session["resQuery"] = parameters[0].Value.ToString();
+                String[] arr = Session["resQuery"].ToString().Split(';');
+                ViewBag.Result = arr;
+                Session["resQuery"] = null;
+                return View("ResultQuery2");
             }
         }
     }
