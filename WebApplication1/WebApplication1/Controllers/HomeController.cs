@@ -416,6 +416,11 @@ namespace WebApplication1.Controllers
 
                 Session["resQuery"] = res.ElementAt(0);
 
+                if (Session["resQuery"] == null)
+                {
+                    Session["resQuery"] = "Нет данных";
+                }
+
                 return View("ResultQuery");
             }
         }
@@ -425,7 +430,7 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        public ActionResult Dohod(string film, DateTime date1, DateTime date2)
+        public ActionResult Dohod(string film, DateTime? date1, DateTime? date2)
         {
             Session["resQuery"] = null;
             using (Model1 db = new Model1())
@@ -442,6 +447,11 @@ namespace WebApplication1.Controllers
                 var res = db.Database.SqlQuery<String>("SELECT dohodfilm(:p1, :p2, :p3) from dual", parameters);
 
                 Session["resQuery"] = res.ElementAt(0);
+
+                if (Session["resQuery"] == null)
+                {
+                    Session["resQuery"] = "Нет данных";
+                }
 
                 return View("ResultQuery");
             }
@@ -464,8 +474,68 @@ namespace WebApplication1.Controllers
                 Session["resQuery"] = parameters[0].Value.ToString();
                 String[] arr = Session["resQuery"].ToString().Split(';');
                 ViewBag.Result = arr;
-                Session["resQuery"] = null;
+                
                 return View("ResultQuery2");
+            }
+        }
+
+        public ActionResult LengthFilm()
+        {
+            return View();
+        }
+
+        public ActionResult getLength(string film)
+        {
+            Session["resQuery"] = null;
+            using (Model1 db = new Model1())
+            {
+                var parameters = new[]
+                {
+                    new OracleParameter("p1", Oracle.ManagedDataAccess.Client.OracleDbType.Varchar2),
+                };
+                parameters[0].Value = film;
+              
+                var res = db.Database.SqlQuery<String>("SELECT lab_package.get_length_film(:p1) from dual", parameters);
+
+                Session["resQuery"] = res.ElementAt(0);
+
+                if (Session["resQuery"] == null)
+                {
+                    Session["resQuery"] = "Нет данных";
+                }
+
+                return View("ResultQuery");
+            }
+        }
+
+        public ActionResult CalcYear()
+        {
+            return View();
+        }
+
+        public ActionResult getCalcYear(string film, string fam)
+        {
+            Session["resQuery"] = null;
+            using (Model1 db = new Model1())
+            {
+                var parameters = new[]
+                {
+                    new OracleParameter("p1", Oracle.ManagedDataAccess.Client.OracleDbType.Varchar2),
+                    new OracleParameter("p2", Oracle.ManagedDataAccess.Client.OracleDbType.Varchar2),
+                };
+                parameters[0].Value = film;
+                parameters[1].Value = fam;
+
+                var res = db.Database.SqlQuery<String>("SELECT lab_package.calc_year(:p1, :p2) from dual", parameters);
+
+                Session["resQuery"] = res.ElementAt(0);
+
+                if (Session["resQuery"] == null)
+                {
+                    Session["resQuery"] = "Нет данных";
+                }
+
+                return View("ResultQuery");
             }
         }
     }
